@@ -32,6 +32,16 @@ func variadic(integers ...int) {
 	}
 }
 
+// Using return values
+
+func returnIntParam(i int) int {
+	return i
+}
+
+func returnStringParam(s string) string {
+	return s
+}
+
 func sum(nums ...int) int {
 	sum := 0
 	for n := range nums {
@@ -39,8 +49,6 @@ func sum(nums ...int) int {
 	}
 	return sum
 }
-
-// Using return values
 
 // use r for radius and return type of float64
 func circleArea(r float64) float64 {
@@ -77,6 +85,7 @@ func greeting3(n string) (string, bool) {
 }
 
 // Pointer example
+
 func withoutPointer(i int) {
 	i += 1
 }
@@ -113,6 +122,14 @@ func fibonacciRecursive(i int) int {
 }
 
 // Pass functions to other functions
+
+func returnIntFunction(i int, f func(int) int) int {
+	return f(i)
+}
+
+func returnStringFunction(s string, str func(string) string) string {
+	return str(s)
+}
 
 // 1- use a slice of strings, 2- pass a function
 func traverseNames(n []string, f func(string)) {
@@ -166,13 +183,23 @@ func fibonacciClosure() func() int {
 func main() {
 	greeting("Jocko")
 	greeting("Echo")
-	goodbye("Jocko")
-	goodbye("Echo")
+
+	// to run a function at the end use 'defer'
+	defer goodbye("Jocko")
+	defer goodbye("Echo")
 
 	fmt.Println()
 
 	fmt.Printf("product: ")
 	product(4, 3)
+
+	fmt.Println()
+
+	fmt.Printf("return int param: ")
+	fmt.Println(returnIntParam(200))
+
+	fmt.Printf("return string param: ")
+	fmt.Println(returnStringParam("Echo"))
 
 	fmt.Println()
 
@@ -245,8 +272,12 @@ func main() {
 
 	fmt.Println()
 
+	fmt.Println("pass functions to other functions...")
+	fmt.Printf("%d\n", returnIntFunction(200, returnIntParam))
+	fmt.Printf("%s\n", returnStringFunction("Echo", returnStringParam))
+	fmt.Println()
 	fmt.Println("traverse names slice")
-	// (1) pass a slice of strings and (2) call the func greeting
+	// (1) pass a slice of strings and (2) call the func greeting/goodbye
 	traverseNames([]string{"Jocko", "Echo", "Leif"}, greeting)
 	traverseNames([]string{"Jocko", "Echo", "Leif"}, goodbye)
 
@@ -278,4 +309,6 @@ func main() {
 		// fmt.Println(fibonacci()())
 		fmt.Println(fib())
 	}
+
+	fmt.Println()
 }
