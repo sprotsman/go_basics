@@ -181,6 +181,7 @@ func fibonacciClosure() func() int {
 }
 
 func main() {
+	fmt.Println("Single parameters...")
 	greeting("Jocko")
 	greeting("Echo")
 
@@ -190,21 +191,23 @@ func main() {
 
 	fmt.Println()
 
+	fmt.Println("Multiple parameters...")
 	fmt.Printf("product: ")
 	product(4, 3)
 
 	fmt.Println()
 
+	fmt.Println("variadic:")
+	variadic(50, 51, 60, 61, 62)
+
+	fmt.Println()
+
+	fmt.Println("Using return values...")
 	fmt.Printf("return int param: ")
 	fmt.Println(returnIntParam(200))
 
 	fmt.Printf("return string param: ")
 	fmt.Println(returnStringParam("Echo"))
-
-	fmt.Println()
-
-	fmt.Println("variadic:")
-	variadic(50, 51, 60, 61, 62)
 
 	fmt.Println()
 
@@ -221,7 +224,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("multiple return values:")
+	fmt.Println("Multiple return values...")
 	fmt.Println(multi(10, "Jocko")) // -> 11 Hello jocko
 	fmt.Printf("name length: ")
 	fmt.Println(nameLength("Jocko"))
@@ -241,7 +244,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("pointers...")
+	fmt.Println("Pointers...")
 	i := 1
 	fmt.Println(i) // 1
 	withoutPointer(i)
@@ -272,7 +275,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("pass functions to other functions...")
+	fmt.Println("Pass functions to other functions...")
 	fmt.Printf("%d\n", returnIntFunction(200, returnIntParam))
 	fmt.Printf("%s\n", returnStringFunction("Echo", returnStringParam))
 	fmt.Println()
@@ -283,11 +286,12 @@ func main() {
 
 	fmt.Println()
 
+	fmt.Println("Anonymous...")
 	anonymous()
 
 	fmt.Println()
 
-	fmt.Println("closures:")
+	fmt.Println("Closures...")
 	// assign this closure to a variable
 	counter1 := counter()
 	fmt.Println(counter1()) // 1
