@@ -141,7 +141,7 @@ func traverseNames(n []string, f func(string)) {
 // Anonymous functions
 
 func anonymous() {
-	// pass this anonymous function to HandleFunc
+	// pass this anonymous function to HandleFunc (commonly used)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("reached /")
 	})
@@ -181,7 +181,7 @@ func fibonacciClosure() func() int {
 }
 
 func main() {
-	fmt.Println("Single parameters...")
+	fmt.Println("•••• Single parameter examples ••••")
 	greeting("Jocko")
 	greeting("Echo")
 
@@ -191,7 +191,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("Multiple parameters...")
+	fmt.Println("•••• Multiple parameters examples ••••")
 	fmt.Printf("product: ")
 	product(4, 3)
 
@@ -202,7 +202,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("Using return values...")
+	fmt.Println("•••• Using return values ••••")
 	fmt.Printf("return int param: ")
 	fmt.Println(returnIntParam(200))
 
@@ -211,7 +211,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Printf("sum: ")
+	fmt.Printf("sum (with variadic): ")
 	fmt.Println(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
 
 	fmt.Println()
@@ -224,7 +224,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("Multiple return values...")
+	fmt.Println("•••• Multiple return values ••••")
 	fmt.Println(multi(10, "Jocko")) // -> 11 Hello jocko
 	fmt.Printf("name length: ")
 	fmt.Println(nameLength("Jocko"))
@@ -244,7 +244,7 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("Pointers...")
+	fmt.Println("•••• Pointers ••••")
 	i := 1
 	fmt.Println(i) // 1
 	withoutPointer(i)
@@ -259,14 +259,7 @@ func main() {
 
 	fmt.Println()
 
-	// functions can be assigned to variables
-	fmt.Println("assign function to variable:")
-	hello := greeting
-	hello("Jocko")
-
-	fmt.Println()
-
-	fmt.Println("Recursion...")
+	fmt.Println("•••• Recursion ••••")
 	fmt.Println("factorials:")
 	fmt.Println(factorial(5))
 	fmt.Println(factorial(4))
@@ -275,23 +268,29 @@ func main() {
 
 	fmt.Println()
 
-	fmt.Println("Pass functions to other functions...")
-	fmt.Printf("%d\n", returnIntFunction(200, returnIntParam))
-	fmt.Printf("%s\n", returnStringFunction("Echo", returnStringParam))
+	// functions can be assigned to variables
+	fmt.Println("•••• Assign function to variable ••••")
+	hello := greeting
+	hello("Jocko")
+
 	fmt.Println()
-	fmt.Println("traverse names slice")
+
+	fmt.Println("•••• Pass functions to other functions ••••")
+	fmt.Printf("int: %d\n", returnIntFunction(200, returnIntParam))
+	fmt.Printf("string: %s\n", returnStringFunction("Echo", returnStringParam))
+	fmt.Println("traverse names from a slice:")
 	// (1) pass a slice of strings and (2) call the func greeting/goodbye
 	traverseNames([]string{"Jocko", "Echo", "Leif"}, greeting)
 	traverseNames([]string{"Jocko", "Echo", "Leif"}, goodbye)
 
 	fmt.Println()
 
-	fmt.Println("Anonymous...")
+	fmt.Println("•••• Anonymous ••••")
 	anonymous()
 
 	fmt.Println()
 
-	fmt.Println("Closures...")
+	fmt.Println("•••• Closures ••••")
 	// assign this closure to a variable
 	counter1 := counter()
 	fmt.Println(counter1()) // 1
