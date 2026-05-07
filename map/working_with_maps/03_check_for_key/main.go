@@ -17,8 +17,15 @@ func main() {
 	names[0] = "Jocko"    // indexed insertion
 	names[1] = "Echo"
 
-	adam, exists := names[0]
+	name, exists := names[0]
 	if(exists) {
-		fmt.Printf("%s exists\n", adam)  // output -> "Adam exists"
+		fmt.Printf("%s exists\n", name)  // output -> "Jocko exists"
 	}
+
+	// Using the "Short Statement" If (most idiomatic)
+	if name, ok := names[1]; ok {
+		fmt.Printf("%s exists\n", name)
+	}
+	// 'name' and 'ok' no longer exist after this point, keeping your code clean.
+
 }
